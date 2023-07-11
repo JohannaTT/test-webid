@@ -1,0 +1,22 @@
+.General{
+    width: 70%;
+}
+
+h1{
+    text-transform: uppercase;
+}
+
+div.Content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.UserList{
+    width: 500px;
+    height: 500px;
+    overflow: scroll;
+    padding: 15px;
+    border: 1px solid black;
+    text-align: start;
+}
