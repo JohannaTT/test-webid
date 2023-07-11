@@ -9,10 +9,13 @@ const CalculatorAge = () => {
   const [ averageAge, setAverageAge ] = useState(0);
 
   const getAverageAge = (ids) => {
-    axios.get(`${import.meta.env.VITE_BACK_URL_AVERAGE}/?ids=${JSON.stringify(ids)}`)
-      .then(response => {
-        setAverageAge(new Date().getFullYear() - response.data.average)
-      });
+    if (ids.length !== 0) {
+      axios.get(`${import.meta.env.VITE_BACK_URL_AVERAGE}/?ids=${JSON.stringify(ids)}`)
+        .then(response => setAverageAge(Math.round(new Date().getFullYear() - response.data.average)))
+        .catch((response) => console.log(response?.response.data?.error))
+    } else {
+      setAverageAge(0);
+    }
   }
 
   return (

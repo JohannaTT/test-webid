@@ -13,8 +13,11 @@ const UserList = ({ getAverageAge }) => {
     } else {
       setCheckedInput([...checkedInput, id]);
     }
-    getAverageAge(checkedInput);
   };
+  
+  useEffect(() => {
+    getAverageAge(checkedInput);
+  }, [checkedInput]);
   
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACK_URL_USERS}/users`)
@@ -25,8 +28,8 @@ const UserList = ({ getAverageAge }) => {
     <div>
       {usersList.map(user => (
         <div key={user.id}>
-          <input type="checkbox" id="user" name="user" checked={checkedInput.includes(user.id)} onChange={() => handleChange(user.id)} />
-          <label htmlFor={user.name}>{user.name}</label>
+          <input type="checkbox" id={user.id} name={user.id} checked={checkedInput.includes(user.id)} onChange={() => handleChange(user.id)} />
+          <label htmlFor={user.id}>{user.name}</label>
         </div>
       ))}
     </div>
